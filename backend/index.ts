@@ -1,12 +1,14 @@
 import express from "express";
 import { dbConnect } from "./config/db";
 import WebhookRouter from "./routes/webhook";
+import SubscriptionRouter from "./routes/subscription";
 
 const app = express();
 const port = 3000;
 
 app.use("/", WebhookRouter);
-
+app.use(express.json());
+app.use("/", SubscriptionRouter);
 app.get("/test", (req, res) => {
   res.send("Welcome backend is running fine.");
 });
